@@ -1,25 +1,17 @@
-# calculorural.com.br
+# Calculorural
 
-Official website for the project.
+Estrutura básica do site criada com HTML, CSS e JavaScript.
 
-## Local development
+## Como visualizar
 
-```bash
-npm install
-npm run dev
-```
+Abra o arquivo `index.html` no navegador.
 
-## Production build
+## Estrutura
 
-```bash
-npm run build
-npm run start
-```
+- `index.html` - página principal
+- `styles.css` - estilos visuais
+- `script.js` - comportamento simples
 
-## Environment variables
+## Personalização
 
-Create a `.env.local` file with the required values for your deployment environment.
-
-## Notes
-
-This project includes a lightweight setup for local development and production builds without duplicate setup steps in the documentation.
+Você pode alterar textos, links, paleta de cores e seções conforme a identidade do projeto.
