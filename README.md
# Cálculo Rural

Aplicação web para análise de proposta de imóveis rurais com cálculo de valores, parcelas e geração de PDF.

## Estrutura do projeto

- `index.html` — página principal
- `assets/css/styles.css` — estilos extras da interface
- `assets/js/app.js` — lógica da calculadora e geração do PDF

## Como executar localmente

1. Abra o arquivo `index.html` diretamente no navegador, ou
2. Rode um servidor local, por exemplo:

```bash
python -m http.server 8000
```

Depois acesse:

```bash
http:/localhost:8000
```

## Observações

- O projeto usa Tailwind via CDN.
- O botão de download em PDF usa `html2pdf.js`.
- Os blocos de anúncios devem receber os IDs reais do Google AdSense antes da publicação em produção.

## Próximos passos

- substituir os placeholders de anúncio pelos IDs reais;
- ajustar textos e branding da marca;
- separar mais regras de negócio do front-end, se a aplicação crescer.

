@@ -1,0 +1,154 @@
+const areaTotal = document.getElementById('areaTotal');
+const areaPlantio = document.getElementById('areaPlantio');
+const precoSaca = document.getElementById('precoSaca');
+const sacasTotal = document.getElementById('sacasTotal');
+const scEntrada = document.getElementById('scEntrada');
+const qtdParcelas = document.getElementById('qtdParcelas');
+const containerParcelas = document.getElementById('containerParcelas');
+const resValorGlobal = document.getElementById('resValorGlobal');
+const resMediaTotal = document.getElementById('resMediaTotal');
+const resMediaPlantio = document.getElementById('resMediaPlantio');
+const resEntradaReais = document.getElementById('resEntradaReais');
+const resTotalDistribuido = document.getElementById('resTotalDistribuido');
+const alertaConferencia = document.getElementById('alertaConferencia');
+
+function formatMoeda(valor) {
+  return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+function formatSacas(valor) {
+  return `${valor.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} sc`;
+}
+
+function renderParcelas() {
+  const num = Number.parseInt(qtdParcelas.value, 10) || 1;
+  const totalSacas = Number.parseFloat(sacasTotal.value) || 0;
+  const entrada = Number.parseFloat(scEntrada.value) || 0;
+  const restante = Math.max(0, totalSacas - entrada);
+  const valorParcela = (restante / num).toFixed(1);
+
+  containerParcelas.innerHTML = '';
+
+  for (let i = 1; i <= num; i += 1) {
+    const div = document.createElement('div');
+    div.className = 'flex flex-col sm:flex-row gap-3 items-center';
+    div.innerHTML = `
+      <div class="w-full sm:w-1/2 flex items-center gap-2">
+        <span class="text-xs text-gray-500 font-semibold w-16">Parcela ${i}:</span>
+        <input type="number" step="0.1" value="${valorParcela}" class="input-parcela flex-1 border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-500" aria-label="Valor da parcela ${i} em sacas" />
+      </div>
+      <div class="w-full sm:w-1/2 bg-gray-50 p-2 rounded-lg border border-gray-200 flex justify-between">
+        <span class="text-xs text-gray-500">Em R$:</span>
+        <span class="res-parcela-reais text-sm font-semibold text-gray-800">R$ 0,00</span>
+      </div>
+    `;
+    containerParcelas.appendChild(div);
+  }
+
+  document.querySelectorAll('.input-parcela').forEach((input) => {
+    input.addEventListener('input', calcular);
+  });
+
+  calcular();
+}
+
+function calcular() {
+  const areaTotalValor = Number.parseFloat(areaTotal.value) || 0;
+  const areaPlantioValor = Number.parseFloat(areaPlantio.value) || 0;
+  const precoSacaValor = Number.parseFloat(precoSaca.value) || 0;
+  const sacasTotalValor = Number.parseFloat(sacasTotal.value) || 0;
+  const entrada = Number.parseFloat(scEntrada.value) || 0;
+
+  resValorGlobal.textContent = formatMoeda(sacasTotalValor * precoSacaValor);
+  resMediaTotal.textContent = areaTotalValor > 0 ? `${formatSacas(sacasTotalValor / areaTotalValor)}/ha` : '0/ha';
+  resMediaPlantio.textContent = areaPlantioValor > 0 ? `${formatSacas(sacasTotalValor / areaPlantioValor)}/ha` : '0/ha';
+  resEntradaReais.textContent = formatMoeda(entrada * precoSacaValor);
+
+  let soma = 0;
+  const inputs = document.querySelectorAll('.input-parcela');
+  const outputs = document.querySelectorAll('.res-parcela-reais');
+
+  inputs.forEach((input, index) => {
+    const valor = Number.parseFloat(input.value) || 0;
+    soma += valor;
+    if (outputs[index]) outputs[index].textContent = formatMoeda(valor * precoSacaValor);
+  });
+
+  const totalDistribuido = entrada + soma;
+  resTotalDistribuido.textContent = formatSacas(totalDistribuido);
+  const diferenca = totalDistribuido - sacasTotalValor;
+
+  if (Math.abs(diferenca) < 0.2) {
+    alertaConferencia.innerHTML = '<span class="text-emerald-700">Valores conferem com a proposta.</span>';
+  } else {
+    alertaConferencia.innerHTML = `<span class="text-amber-600">Atenção: Diferença de ${formatSacas(diferenca)} em relação ao total.</span>`;
+  }
+}
+
+[areaTotal, areaPlantio, precoSaca, sacasTotal, scEntrada].forEach((element) => {
+  element.addEventListener('input', () => {
+    if (element === sacasTotal || element === scEntrada) {
+      renderParcelas();
+    } else {
+      calcular();
+    }
+  });
+});
+
+qtdParcelas.addEventListener('change', renderParcelas);
+
+function iniciarDownloadVideo() {
+  const modal = document.getElementById('videoModal');
+  const temporizadorTexto = document.getElementById('temporizadorTexto');
+  const btn = document.getElementById('btnFecharVideo');
+  let tempo = 5;
+
+  modal.classList.remove('hidden');
+  btn.disabled = true;
+  btn.className = 'bg-gray-300 text-gray-500 py-2 px-6 rounded-lg font-bold cursor-not-allowed w-full';
+  btn.textContent = 'Gerando Arquivo...';
+  temporizadorTexto.innerHTML = 'O vídeo terminará em <b id="timer" class="text-yellow-400">5</b>s';
+
+  const contagem = setInterval(() => {
+    tempo -= 1;
+    document.getElementById('timer').textContent = tempo;
+
+    if (tempo <= 0) {
+      clearInterval(contagem);
+      temporizadorTexto.innerHTML = '<span class="text-emerald-400">Recompensa liberada!</span>';
+      btn.disabled = false;
+      btn.textContent = 'Baixar meu PDF agora';
+      btn.className = 'bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-6 rounded-lg font-bold w-full cursor-pointer transition';
+      btn.onclick = () => {
+        modal.classList.add('hidden');
+        gerarPDF();
+      };
+    }
+  }, 1000);
+}
+
+function gerarPDF() {
+  const conteudo = document.getElementById('conteudo-pdf');
+  const cabecalho = document.getElementById('cabecalho-pdf');
+  const rodape = document.getElementById('rodape-pdf');
+
+  cabecalho.classList.remove('hidden');
+  rodape.classList.remove('hidden');
+
+  const opcoes = {
+    margin: 10,
+    filename: 'Analise-Proposta-Rural.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf().set(opcoes).from(conteudo).save().then(() => {
+    cabecalho.classList.add('hidden');
+    rodape.classList.add('hidden');
+  });
+}
+
+document.getElementById('btnIniciarDownload').addEventListener('click', iniciarDownloadVideo);
+renderParcelas();
+
