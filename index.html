@@ -1,212 +1,326 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Calculorural - soluções para gestão, cálculos e apoio ao campo."
-    />
-    <title>Calculorural</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a href="#top" class="brand" aria-label="Calculorural home">
-          <span class="brand-mark">C</span>
-          <span>Calculorural</span>
-        </a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análise de Proposta - Imóveis Rurais</title>
 
-        <nav class="main-nav" aria-label="Navegação principal">
-          <a href="#servicos">Serviços</a>
-          <a href="#vantagens">Vantagens</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
-        </nav>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-        <a href="#contato" class="button button-primary">Solicitar contato</a>
+  <!-- Substitua pelo seu ID real do Google AdSense antes da publicação. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0000000000000000" crossorigin="anonymous"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            agro: {
+              50: '#f4f7f4',
+              100: '#e3ebe3',
+              600: '#2d6a4f',
+              700: '#1b4332',
+              800: '#081c15'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col font-sans">
+  <header class="bg-agro-700 text-white py-6 shadow-md shrink-0">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Análise de Proposta</h1>
+        <p class="text-emerald-200 text-sm mt-1 uppercase tracking-wider font-medium">Imóveis Rurais</p>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main id="top">
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <span class="eyebrow">Sua solução no campo</span>
-            <h1>Ferramentas para quem vive do agro e da produtividade.</h1>
-            <p>
-              A Calculorural oferece apoio prático para gestão, organização e
-              tomada de decisão com foco em resultados reais no dia a dia do
-              produtor e do negócio rural.
-            </p>
+  <div class="max-w-7xl mx-auto px-4 py-8 w-full flex flex-col lg:flex-row gap-8 flex-1">
+    <main class="w-full lg:w-3/4 flex flex-col gap-6">
+      <div id="conteudo-pdf" class="bg-transparent space-y-6 p-1">
+        <div id="cabecalho-pdf" class="hidden text-center border-b-2 border-agro-700 pb-4 mb-6">
+          <h1 class="text-2xl font-bold text-agro-800">Relatório de Avaliação Rural</h1>
+          <p class="text-gray-500 text-sm">Resumo dos parâmetros e condições de pagamento</p>
+        </div>
 
-            <div class="hero-actions">
-              <a href="#servicos" class="button button-primary">Conhecer serviços</a>
-              <a href="#sobre" class="button button-secondary">Saiba mais</a>
+        <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-3 mb-4">Parâmetros da Negociação</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1" for="areaTotal">Área Total (ha)</label>
+              <input type="number" id="areaTotal" step="0.1" value="16.8" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-emerald-500" />
             </div>
-
-            <ul class="hero-stats" aria-label="Estatísticas da empresa">
-              <li>
-                <strong>+120</strong>
-                <span>Clientes atendidos</span>
-              </li>
-              <li>
-                <strong>24/7</strong>
-                <span>Suporte e organização</span>
-              </li>
-              <li>
-                <strong>100%</strong>
-                <span>Foco em clareza</span>
-              </li>
-            </ul>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1" for="areaPlantio">Área de Plantio (ha)</label>
+              <input type="number" id="areaPlantio" step="0.1" value="13.0" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-emerald-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1" for="precoSaca">Preço da Saca (R$)</label>
+              <input type="number" id="precoSaca" step="0.5" value="139.00" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-emerald-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1" for="sacasTotal">Total da Proposta (sc)</label>
+              <input type="number" id="sacasTotal" step="1" value="16000" class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-emerald-500" />
+            </div>
           </div>
+        </section>
 
-          <div class="hero-card" aria-label="Resumo do site">
-            <div class="card-top">
-              <span class="status-dot"></span>
-              <span>Performance agrícola</span>
+        <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-3 mb-4">Resultados</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+            <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-4">
+              <span class="block text-xs font-medium text-emerald-800 mb-1">Valor Global (R$)</span>
+              <span id="resValorGlobal" class="text-xl font-bold text-emerald-950">R$ 0,00</span>
             </div>
-
-            <div class="metric-block">
-              <small>Eficiência geral</small>
-              <strong>87%</strong>
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+              <span class="block text-xs font-medium text-gray-600 mb-1">Média (Área Total)</span>
+              <span id="resMediaTotal" class="text-xl font-bold text-gray-800">0,0 sc/ha</span>
             </div>
-
-            <div class="mini-chart" aria-hidden="true">
-              <span style="height: 30%"></span>
-              <span style="height: 50%"></span>
-              <span style="height: 65%"></span>
-              <span style="height: 78%"></span>
-              <span style="height: 92%"></span>
-              <span style="height: 100%"></span>
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+              <span class="block text-xs font-medium text-gray-600 mb-1">Média (Área Plantio)</span>
+              <span id="resMediaPlantio" class="text-xl font-bold text-gray-800">0,0 sc/ha</span>
             </div>
+          </div>
+        </section>
 
-            <div class="card-points">
-              <div>
-                <span>Planejamento</span>
-                <strong>Alta</strong>
-              </div>
-              <div>
-                <span>Controle</span>
-                <strong>Prático</strong>
+        <section class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h2 class="text-lg font-semibold text-gray-800 border-b border-gray-100 pb-3 mb-4">Condições de Pagamento</h2>
+          <div class="mb-4">
+            <label class="block text-xs font-semibold text-gray-600 mb-1" for="scEntrada">Entrada (sc)</label>
+            <div class="flex flex-col sm:flex-row gap-3 items-center">
+              <input type="number" id="scEntrada" step="1" value="4400" class="w-full sm:w-1/2 border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-emerald-500" />
+              <div class="w-full sm:w-1/2 bg-gray-50 p-2.5 rounded-lg border border-gray-200 flex justify-between">
+                <span class="text-xs text-gray-500 font-medium">Valor em R$:</span>
+                <span id="resEntradaReais" class="text-sm font-semibold text-gray-800">R$ 0,00</span>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section id="servicos" class="section">
-        <div class="container">
-          <div class="section-heading">
-            <span class="eyebrow">Nossos serviços</span>
-            <h2>Estrutura pensada para o seu negócio.</h2>
-          </div>
-
-          <div class="cards-grid">
-            <article class="info-card">
-              <div class="icon">📊</div>
-              <h3>Gestão e organização</h3>
-              <p>
-                Acompanhamento de processos, controles e visão clara das demandas
-                do seu negócio.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <div class="icon">🌾</div>
-              <h3>Atendimento rural</h3>
-              <p>
-                Soluções práticas para produtores, consultores e operações do
-                campo.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <div class="icon">⚙️</div>
-              <h3>Ferramentas e automação</h3>
-              <p>
-                Processos que reduzem esforço manual e ajudam na rotina diária.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="vantagens" class="section section-alt">
-        <div class="container">
-          <div class="section-heading">
-            <span class="eyebrow">Vantagens</span>
-            <h2>Mais clareza, menos complicação.</h2>
-          </div>
-
-          <div class="feature-list">
-            <div class="feature-item">
-              <h3>Foco em resultado</h3>
-              <p>Estratégias e ações pensadas para produtividade e controle.</p>
+          <div class="mb-4">
+            <div class="flex justify-between items-center mb-2">
+              <label class="block text-xs font-semibold text-gray-600" for="qtdParcelas">Parcelas Restantes</label>
+              <select id="qtdParcelas" class="border border-gray-300 rounded p-1 text-sm bg-white">
+                <option value="1">1 parcela</option>
+                <option value="2">2 parcelas</option>
+                <option value="3" selected>3 parcelas</option>
+                <option value="4">4 parcelas</option>
+                <option value="5">5 parcelas</option>
+              </select>
             </div>
-            <div class="feature-item">
-              <h3>Atendimento humano</h3>
-              <p>Relacionamento direto e processos simples de entender.</p>
+            <div id="containerParcelas" class="space-y-3"></div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-gray-100 bg-gray-50 p-4 rounded-xl space-y-2">
+            <div class="flex justify-between text-sm">
+              <span class="text-gray-600">Total (Entrada + Parcelas):</span>
+              <span id="resTotalDistribuido" class="font-bold text-gray-900">0,0 sc</span>
             </div>
-            <div class="feature-item">
-              <h3>Escalabilidade</h3>
-              <p>Soluções que crescem junto com o seu negócio e sua operação.</p>
-            </div>
+            <div id="alertaConferencia" class="text-xs mt-2 font-medium"></div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="sobre" class="section">
-        <div class="container about-grid">
-          <div>
-            <span class="eyebrow">Sobre</span>
-            <h2>Uma identidade forte para quem trabalha com produtividade.</h2>
-            <p>
-              A Calculorural nasceu para conectar organização, eficiência e
-              simplicidade em uma experiência moderna, com foco na realidade do
-              mercado rural.
-            </p>
-          </div>
-
-          <div class="about-box">
-            <ul>
-              <li>Estrutura visual moderna</li>
-              <li>Conteúdo direto e profissional</li>
-              <li>Experiência clara para conversão</li>
-            </ul>
-          </div>
+        <div id="rodape-pdf" class="hidden mt-10 pt-4 border-t border-gray-300 text-center text-xs text-gray-600">
+          <p><strong>Desenvolvido por Thiago Martins</strong> · Contato: thiagomartins50@gmail.com</p>
         </div>
-      </section>
+      </div>
+
+      <div class="text-center mt-2">
+        <button id="btnIniciarDownload" type="button" class="bg-agro-600 hover:bg-agro-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center justify-center mx-auto gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          Baixar PDF
+        </button>
+        <p class="text-xs text-gray-400 mt-2">Assista a um breve anúncio para liberar o download.</p>
+      </div>
     </main>
 
-    <footer id="contato" class="site-footer">
-      <div class="container footer-inner">
-        <div>
-          <a href="#top" class="brand footer-brand">
-            <span class="brand-mark">C</span>
-            <span>Calculorural</span>
-          </a>
-        </div>
-
-        <div class="contact-box">
-          <h3>Entre em contato</h3>
-          <p>Fale com a nossa equipe e tire suas dúvidas.</p>
-          <a href="mailto:contato@calculorural.com.br">contato@calculorural.com.br</a>
+    <aside class="w-full lg:w-[300px] flex flex-col gap-6 shrink-0">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
+        <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">Publicidade</span>
+        <div class="w-full h-[250px] bg-gray-100 flex items-center justify-center border border-dashed border-gray-300">
+          <ins class="adsbygoogle" style="display:block; width:100%; height:100%" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
         </div>
       </div>
 
-      <div class="container footer-bottom">
-        <p>© <span id="year"></span> Calculorural. Todos os direitos reservados.</p>
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center hidden lg:block sticky top-6">
+        <span class="text-xs text-gray-400 uppercase tracking-widest mb-2 block">Publicidade</span>
+        <div class="w-full h-[600px] bg-gray-100 flex items-center justify-center border border-dashed border-gray-300 text-gray-400 text-sm">
+          <ins class="adsbygoogle" style="display:block; width:100%; height:100%" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000" data-ad-format="vertical"></ins>
+        </div>
       </div>
-    </footer>
+    </aside>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+  <footer class="bg-white border-t border-gray-200 py-6 mt-auto text-center text-sm text-gray-600">
+    <p>Desenvolvido por <strong class="text-gray-800">Thiago Martins</strong></p>
+    <a href="mailto:thiagomartins50@gmail.com" class="text-emerald-700 hover:text-emerald-800 font-medium inline-block mt-1">Contato: thiagomartins50@gmail.com</a>
+  </footer>
+
+  <div id="videoModal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="tituloPatrocinador">
+    <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden">
+      <div class="bg-gray-900 text-white p-3 flex justify-between items-center text-sm">
+        <span id="tituloPatrocinador">Patrocinador</span>
+        <span id="temporizadorTexto">O vídeo terminará em <b id="timer" class="text-yellow-400">5</b>s</span>
+      </div>
+      <div class="w-full aspect-video bg-black flex items-center justify-center text-gray-500 relative">
+        <svg class="w-16 h-16 animate-pulse opacity-50" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 6-12 6z"></path></svg>
+        <div class="absolute inset-0 flex items-center justify-center font-bold text-gray-400">[ VÍDEO DO ANUNCIANTE AQUI ]</div>
+      </div>
+      <div class="p-4 text-center bg-gray-100">
+        <p class="text-sm text-gray-600 font-medium mb-2">Aguarde para liberar o download do seu PDF.</p>
+        <button id="btnFecharVideo" type="button" disabled class="bg-gray-300 text-gray-500 py-2 px-6 rounded-lg font-bold cursor-not-allowed w-full">Gerando Arquivo...</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const areaTotal = document.getElementById('areaTotal');
+    const areaPlantio = document.getElementById('areaPlantio');
+    const precoSaca = document.getElementById('precoSaca');
+    const sacasTotal = document.getElementById('sacasTotal');
+    const scEntrada = document.getElementById('scEntrada');
+    const qtdParcelas = document.getElementById('qtdParcelas');
+    const containerParcelas = document.getElementById('containerParcelas');
+    const resValorGlobal = document.getElementById('resValorGlobal');
+    const resMediaTotal = document.getElementById('resMediaTotal');
+    const resMediaPlantio = document.getElementById('resMediaPlantio');
+    const resEntradaReais = document.getElementById('resEntradaReais');
+    const resTotalDistribuido = document.getElementById('resTotalDistribuido');
+    const alertaConferencia = document.getElementById('alertaConferencia');
+
+    function formatMoeda(valor) {
+      return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function formatSacas(valor) {
+      return valor.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' sc';
+    }
+
+    function renderParcelas() {
+      const num = parseInt(qtdParcelas.value, 10) || 1;
+      const totalSacas = parseFloat(sacasTotal.value) || 0;
+      const entrada = parseFloat(scEntrada.value) || 0;
+      const restante = Math.max(0, totalSacas - entrada);
+      const valorParcela = (restante / num).toFixed(1);
+
+      containerParcelas.innerHTML = '';
+      for (let i = 1; i <= num; i += 1) {
+        const div = document.createElement('div');
+        div.className = 'flex flex-col sm:flex-row gap-3 items-center';
+        div.innerHTML = `
+          <div class="w-full sm:w-1/2 flex items-center gap-2">
+            <span class="text-xs text-gray-500 font-semibold w-16">Parcela ${i}:</span>
+            <input type="number" step="0.1" value="${valorParcela}" class="input-parcela flex-1 border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-500" aria-label="Valor da parcela ${i} em sacas" />
+          </div>
+          <div class="w-full sm:w-1/2 bg-gray-50 p-2 rounded-lg border border-gray-200 flex justify-between">
+            <span class="text-xs text-gray-500">Em R$:</span>
+            <span class="res-parcela-reais text-sm font-semibold text-gray-800">R$ 0,00</span>
+          </div>
+        `;
+        containerParcelas.appendChild(div);
+      }
+
+      document.querySelectorAll('.input-parcela').forEach((input) => input.addEventListener('input', calcular));
+      calcular();
+    }
+
+    function calcular() {
+      const areaTotalValor = parseFloat(areaTotal.value) || 0;
+      const areaPlantioValor = parseFloat(areaPlantio.value) || 0;
+      const precoSacaValor = parseFloat(precoSaca.value) || 0;
+      const sacasTotalValor = parseFloat(sacasTotal.value) || 0;
+      const entrada = parseFloat(scEntrada.value) || 0;
+
+      resValorGlobal.textContent = formatMoeda(sacasTotalValor * precoSacaValor);
+      resMediaTotal.textContent = areaTotalValor > 0 ? `${formatSacas(sacasTotalValor / areaTotalValor)}/ha` : '0/ha';
+      resMediaPlantio.textContent = areaPlantioValor > 0 ? `${formatSacas(sacasTotalValor / areaPlantioValor)}/ha` : '0/ha';
+      resEntradaReais.textContent = formatMoeda(entrada * precoSacaValor);
+
+      let soma = 0;
+      const inputs = document.querySelectorAll('.input-parcela');
+      const outputs = document.querySelectorAll('.res-parcela-reais');
+
+      inputs.forEach((input, index) => {
+        const valor = parseFloat(input.value) || 0;
+        soma += valor;
+        if (outputs[index]) outputs[index].textContent = formatMoeda(valor * precoSacaValor);
+      });
+
+      const totalDistribuido = entrada + soma;
+      resTotalDistribuido.textContent = formatSacas(totalDistribuido);
+      const diferenca = totalDistribuido - sacasTotalValor;
+
+      if (Math.abs(diferenca) < 0.2) {
+        alertaConferencia.innerHTML = '<span class="text-emerald-700">Valores conferem com a proposta.</span>';
+      } else {
+        alertaConferencia.innerHTML = `<span class="text-amber-600">Atenção: Diferença de ${formatSacas(diferenca)} em relação ao total.</span>`;
+      }
+    }
+
+    [areaTotal, areaPlantio, precoSaca, sacasTotal, scEntrada].forEach((element) => {
+      element.addEventListener('input', () => {
+        if (element === sacasTotal || element === scEntrada) renderParcelas();
+        else calcular();
+      });
+    });
+
+    qtdParcelas.addEventListener('change', renderParcelas);
+
+    function iniciarDownloadVideo() {
+      const modal = document.getElementById('videoModal');
+      const temporizadorTexto = document.getElementById('temporizadorTexto');
+      const btn = document.getElementById('btnFecharVideo');
+      let tempo = 5;
+
+      modal.classList.remove('hidden');
+      btn.disabled = true;
+      btn.className = 'bg-gray-300 text-gray-500 py-2 px-6 rounded-lg font-bold cursor-not-allowed w-full';
+      btn.textContent = 'Gerando Arquivo...';
+      temporizadorTexto.innerHTML = 'O vídeo terminará em <b id="timer" class="text-yellow-400">5</b>s';
+
+      const contagem = setInterval(() => {
+        tempo -= 1;
+        document.getElementById('timer').textContent = tempo;
+
+        if (tempo <= 0) {
+          clearInterval(contagem);
+          temporizadorTexto.innerHTML = '<span class="text-emerald-400">Recompensa liberada!</span>';
+          btn.disabled = false;
+          btn.textContent = 'Baixar meu PDF agora';
+          btn.className = 'bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-6 rounded-lg font-bold w-full cursor-pointer transition';
+          btn.onclick = () => {
+            modal.classList.add('hidden');
+            gerarPDF();
+          };
+        }
+      }, 1000);
+    }
+
+    function gerarPDF() {
+      const conteudo = document.getElementById('conteudo-pdf');
+      const cabecalho = document.getElementById('cabecalho-pdf');
+      const rodape = document.getElementById('rodape-pdf');
+
+      cabecalho.classList.remove('hidden');
+      rodape.classList.remove('hidden');
+
+      const opcoes = {
+        margin: 10,
+        filename: 'Analise-Proposta-Rural.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opcoes).from(conteudo).save().then(() => {
+        cabecalho.classList.add('hidden');
+        rodape.classList.add('hidden');
+      });
+    }
+
+    document.getElementById('btnIniciarDownload').addEventListener('click', iniciarDownloadVideo);
+    renderParcelas();
+  </script>
+</body>
 </html>
