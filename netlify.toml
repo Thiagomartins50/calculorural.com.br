@@ -1,0 +1,7 @@
+[build]
+  # This repository is deployed as static content from its root.
+  # An explicit command overrides the stale UI value of `build`, which is not
+  # an executable or a package script in this project.
+  base = "."
+  command = "true"
+  publish = "."
